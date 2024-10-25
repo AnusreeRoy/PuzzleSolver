@@ -1,0 +1,65 @@
+class PuzzleState:
+    def __init__(self, board, empty_pos, moves=0):
+        self.board = board  # board as a 2D list
+        self.empty_pos = empty_pos  # position of the empty tile
+        self.moves = moves  # track moves taken to reach this state
+
+    def get_possible_moves(self):
+        # Define possible moves (up, down, left, right) and return new states
+        pass 
+
+        from collections import deque
+
+def bfs(initial_state, goal_state):
+    queue = deque([initial_state])  
+    visited = set()  
+
+    while queue:
+        state = queue.popleft()
+        if state.board == goal_state:
+            return state  
+
+        for move in state.get_possible_moves():
+            if move not in visited:
+                queue.append(move)
+                visited.add(move)
+    return None  
+
+
+def dfs(initial_state, goal_state):
+    stack = [initial_state]
+    visited = set()
+
+    while stack:
+        state = stack.pop()
+        if state.board == goal_state:
+            return state  
+
+        for move in state.get_possible_moves():
+            if move not in visited:
+                stack.append(move)
+                visited.add(move)
+    return None
+
+
+import heapq
+
+def a_star(initial_state, goal_state):
+    def heuristic(state):
+
+    open_list = []
+    heapq.heappush(open_list, (0, initial_state))  # Priority queue based on f(n) = g(n) + h(n)
+    visited = set()
+
+    while open_list:
+        _, state = heapq.heappop(open_list)
+        if state.board == goal_state:
+            return state  # Solution found
+
+        for move in state.get_possible_moves():
+            if move not in visited:
+                g = state.moves + 1
+                f = g + heuristic(move)
+                heapq.heappush(open_list, (f, move))
+                visited.add(move)
+    return None
