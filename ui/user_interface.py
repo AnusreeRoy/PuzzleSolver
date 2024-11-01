@@ -1,4 +1,4 @@
-from puzzles import EightPuzzle, NQueens
+from puzzles import EightPuzzle
 from algorithms import Solver
 from utils.performance import compare_algorithms
 
