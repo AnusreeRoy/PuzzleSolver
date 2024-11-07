@@ -15,7 +15,7 @@ class Solver:
     def astar(self):
         frontier = []
         initial_state = self.puzzle.initial_state
-        heapq.heappush(frontier, (self.puzzle.heuristics(initial_state, self.heuristic), 0, initial_state))   
+        heapq.heappush(frontier, (self.puzzle.heuristic(initial_state, self.heuristic), 0, initial_state))   
         explored = set()
         parent_map = {tuple(initial_state):None}
         
